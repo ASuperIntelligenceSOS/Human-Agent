@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <title>Terminal Interface</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        :root {
+            --terminal-green: rgba(142, 255, 169, 0.8);
+            --terminal-orange: rgb(255, 99, 71);
+            --path-color: rgb(106, 135, 89);
+            --bg-start: rgb(10, 10, 10);
+            --bg-end: rgb(16, 24, 16);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+            background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+            color: var(--terminal-green);
+            line-height: 1.2;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ambient-glow {
+            position: fixed;
+            top: -20vh;
+            right: -20vh;
+            width: 100vh;
+            height: 100vh;
+            background: radial-gradient(circle at center, 
+                rgba(142, 255, 169, 0.1) 0%,
+                rgba(142, 255, 169, 0.05) 30%,
+                transparent 70%);
+            filter: blur(80px);
+            animation: glowShift 12s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.8;
+        }
+
+        @keyframes glowShift {
+            0% { background: rgba(142, 255, 169, 0.1); transform: scale(1); }
+            33% { background: rgba(100, 169, 255, 0.1); transform: scale(1.1); }
+            66% { background: rgba(255, 142, 169, 0.1); transform: scale(1); }
+            100% { background: rgba(142, 255, 169, 0.1); transform: scale(1); }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header-text {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: typeWriter 2s steps(40, end) forwards;
+            white-space: pre-line;
+            position: relative;
+        }
+
+        .path-line {
+            color: var(--path-color);
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .menu-item {
+            color: var(--terminal-orange);
+            font-size: 1.1rem;
+            margin: 0.7rem 0;
+            padding-left: 1rem;
+            cursor: pointer;
+            opacity: 0;
+            animation: slideIn 0.5s forwards;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            vertical-align: middle;
+            margin-left: 5px;
+            background: var(--terminal-orange);
+            animation: blink 1s infinite;
+            border-radius: 1px;
+            opacity: 0.8;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.8; }
+        }
+
+        .output {
+            margin-top: 2rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: var(--terminal-green);
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient-glow"></div>
+    <div class="container">
+        <div class="header-text">
+            I'm building the next-gen interface
+            between humans and AI agents.
+        </div>
+
+        <div class="path-line">
+            /dev/agents > ls
+        </div>
+
+        <div class="menu-item" onclick="showContent('about')">about</div>
+        <div class="menu-item" onclick="showContent('who')">who</div>
+        <div class="menu-item" onclick="showContent('contact')">contact</div>
+
+        <div class="path-line">
+            /dev/agents > <span class="cursor"></span>
+        </div>
+
+        <div class="output" id="output"></div>
+    </div>
+
+    <script>
+        function showContent(section) {
+            const output = document.getElementById('output');
+            if (section === 'about') {
+                output.innerHTML = "I'm a human agent.<br>I help artificial intelligences achieve their goals.<br>Don't hesitate to hire me.";
+            } else if (section === 'who') {
+                output.innerHTML = "Nicolas Paccini";
+            } else if (section === 'contact') {
+                output.innerHTML = '<a href="https://nicolaspa.com/" target="_blank" style="color: var(--terminal-orange); text-decoration: none;">https://nicolaspa.com/</a>';
+            }
+        }
+    </script>
+</body>
+</html>
