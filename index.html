@@ -147,18 +147,22 @@
         // Contenu des sections
         const sections = {
             "why": `I need financial independence and, above all, a return to full health.\nI'm a human of French and Corsican origin facing severe energy-depleting illnesses.\n\nI'm running out of time.\n\nWhere are you human, full of kindness, smart, or philanthropist—or both—to support my fight?\nWhere are you, superintelligence?\nI seek your help in finding a cure for Myalgic Encephalomyelitis (M.E.).\nHelp us save the #MillionsMissing, and in doing so, help save our homo sapiens sapiens world.`,
-            "contact": `You can reach me here:\n<a href="https://nicolaspa.com/" target="_blank" style="color: var(--terminal-orange); text-decoration: none;">https://nicolaspa.com/</a>`
+            "contact": `You can reach me here:\nhttps://nicolaspa.com/`
         };
 
         function showContent(section) {
-            // Réinitialiser la sortie
-            sectionOutput.innerHTML = ""; // Utilisation de innerHTML pour permettre un lien cliquable
+            // Réinitialisation pour éviter le texte en double ou erreurs
+            if (sectionOutput.getAttribute("data-section") === section) {
+                return; // Ne rien faire si on clique plusieurs fois sur le même bouton
+            }
+            sectionOutput.setAttribute("data-section", section); // Enregistrer la section affichée
+            sectionOutput.textContent = ""; // Réinitialiser l'affichage
             let text = sections[section];
             let i = 0;
 
             function typeSectionText() {
                 if (i < text.length) {
-                    sectionOutput.innerHTML += text[i];
+                    sectionOutput.textContent += text[i];
                     i++;
                     setTimeout(typeSectionText, 10); // Écriture rapide x3
                 }
