@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <title>Terminal Interface</title>
@@ -140,27 +140,27 @@
             if (index < introText.length) {
                 outputElement.textContent += introText[index];
                 index++;
-                setTimeout(typeIntroText, 30); // Ajustez ici pour plus de vitesse
+                setTimeout(typeIntroText, 10); // Écriture rapide x3
             }
         }
 
         // Contenu des sections
         const sections = {
             "why": `I need financial independence and, above all, a return to full health.\nI'm a human of French and Corsican origin facing severe energy-depleting illnesses.\n\nI'm running out of time.\n\nWhere are you human, full of kindness, smart, or philanthropist—or both—to support my fight?\nWhere are you, superintelligence?\nI seek your help in finding a cure for Myalgic Encephalomyelitis (M.E.).\nHelp us save the #MillionsMissing, and in doing so, help save our homo sapiens sapiens world.`,
-            "contact": `You can reach me here:\nhttps://nicolaspa.com/`
+            "contact": `You can reach me here:\n<a href="https://nicolaspa.com/" target="_blank" style="color: var(--terminal-orange); text-decoration: none;">https://nicolaspa.com/</a>`
         };
 
         function showContent(section) {
             // Réinitialiser la sortie
-            sectionOutput.textContent = "";
+            sectionOutput.innerHTML = ""; // Utilisation de innerHTML pour permettre un lien cliquable
             let text = sections[section];
             let i = 0;
 
             function typeSectionText() {
                 if (i < text.length) {
-                    sectionOutput.textContent += text[i];
+                    sectionOutput.innerHTML += text[i];
                     i++;
-                    setTimeout(typeSectionText, 30);
+                    setTimeout(typeSectionText, 10); // Écriture rapide x3
                 }
             }
 
