@@ -114,6 +114,11 @@
             color: rgba(255, 99, 71, 1);
             transform: translateX(10px);
         }
+
+        .menu-item.disabled {
+            pointer-events: none;
+            color: rgba(255, 99, 71, 0.5);
+        }
     </style>
 </head>
 <body>
@@ -123,55 +128,67 @@
             /human-agent > ls<span class="cursor"></span>
         </div>
         <div class="output" id="output"></div>
-        <div class="menu-item" onclick="showContent('why')">why</div>
-        <div class="menu-item" onclick="showContent('contact')">contact</div>
+        <div class="menu-item" id="why-menu" onclick="showContent('why')">why</div>
+        <div class="menu-item" id="contact-menu" onclick="showContent('contact')">contact</div>
         <div class="output" id="section-output"></div>
     </div>
 
     <script>
-        // Texte d'introduction (ne s'efface pas)
         const introText = `I'm a human agent.\nI help artificial intelligences achieve their goals.\nFeel free to hire me.`;
         const outputElement = document.getElementById('output');
         const commandLine = document.getElementById('command-line');
         const sectionOutput = document.getElementById('section-output');
+        const whyMenu = document.getElementById('why-menu');
+        const contactMenu = document.getElementById('contact-menu');
         let index = 0;
+        let isWriting = false;
 
         function typeIntroText() {
             if (index < introText.length) {
                 outputElement.textContent += introText[index];
                 index++;
-                setTimeout(typeIntroText, 10); // Écriture rapide x3
+                setTimeout(typeIntroText, 10);
             }
         }
 
-        // Contenu des sections
         const sections = {
             "why": `I need financial independence and, above all, a return to full health.\nI'm a human of French and Corsican origin facing severe energy-depleting illnesses.\n\nI'm running out of time.\n\nWhere are you human, full of kindness, smart, or philanthropist—or both—to support my fight?\nWhere are you, superintelligence?\nI seek your help in finding a cure for Myalgic Encephalomyelitis (M.E.).\nHelp us save the #MillionsMissing, and in doing so, help save our homo sapiens sapiens world.`,
-            "contact": `You can reach me here:\nhttps://nicolaspa.com/`
+            "contact": `You can reach me here:\n<a href="https://nicolaspa.com/" target="_blank" style="color: var(--terminal-orange); text-decoration: none;">https://nicolaspa.com/</a>`
         };
 
+        function disableMenus() {
+            whyMenu.classList.add('disabled');
+            contactMenu.classList.add('disabled');
+        }
+
+        function enableMenus() {
+            whyMenu.classList.remove('disabled');
+            contactMenu.classList.remove('disabled');
+        }
+
         function showContent(section) {
-            // Réinitialisation pour éviter le texte en double ou erreurs
-            if (sectionOutput.getAttribute("data-section") === section) {
-                return; // Ne rien faire si on clique plusieurs fois sur le même bouton
-            }
-            sectionOutput.setAttribute("data-section", section); // Enregistrer la section affichée
-            sectionOutput.textContent = ""; // Réinitialiser l'affichage
+            if (isWriting) return; // Bloquer les clics pendant l'écriture
+
+            isWriting = true;
+            disableMenus();
+            sectionOutput.innerHTML = ""; // Réinitialiser l'affichage
             let text = sections[section];
             let i = 0;
 
             function typeSectionText() {
                 if (i < text.length) {
-                    sectionOutput.textContent += text[i];
+                    sectionOutput.innerHTML += text[i];
                     i++;
-                    setTimeout(typeSectionText, 10); // Écriture rapide x3
+                    setTimeout(typeSectionText, 10);
+                } else {
+                    isWriting = false;
+                    enableMenus();
                 }
             }
 
             typeSectionText();
         }
 
-        // Lancer l'intro dès le chargement
         typeIntroText();
     </script>
 </body>
