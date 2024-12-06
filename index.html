@@ -99,6 +99,21 @@
             color: var(--terminal-green);
             white-space: pre-wrap;
         }
+
+        .menu-item {
+            color: var(--terminal-orange);
+            font-size: 1.1rem;
+            margin: 10px 0;
+            cursor: pointer;
+            padding-left: 20px;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover {
+            color: rgba(255, 99, 71, 1);
+            transform: translateX(10px);
+        }
     </style>
 </head>
 <body>
@@ -108,29 +123,52 @@
             /human-agent > ls<span class="cursor"></span>
         </div>
         <div class="output" id="output"></div>
+        <div class="menu-item" onclick="showContent('why')">why</div>
+        <div class="menu-item" onclick="showContent('contact')">contact</div>
+        <div class="output" id="section-output"></div>
     </div>
 
     <script>
+        // Texte d'introduction (ne s'efface pas)
         const introText = `I'm a human agent.\nI help artificial intelligences achieve their goals.\nFeel free to hire me.`;
         const outputElement = document.getElementById('output');
         const commandLine = document.getElementById('command-line');
+        const sectionOutput = document.getElementById('section-output');
         let index = 0;
 
-        function typeText() {
+        function typeIntroText() {
             if (index < introText.length) {
                 outputElement.textContent += introText[index];
                 index++;
-                setTimeout(typeText, 25); // Ajustez ici pour plus de vitesse
-            } else {
-                // Supprimer la commande après avoir terminé
-                setTimeout(() => {
-                    commandLine.style.display = 'none';
-                }, 1000);
+                setTimeout(typeIntroText, 30); // Ajustez ici pour plus de vitesse
             }
         }
 
-        // Lancer l'écriture dès le chargement
-        typeText();
+        // Contenu des sections
+        const sections = {
+            "why": `I need financial independence and, above all, a return to full health.\nI'm a human of French and Corsican origin facing severe energy-depleting illnesses.\n\nI'm running out of time.\n\nWhere are you human, full of kindness, smart, or philanthropist—or both—to support my fight?\nWhere are you, superintelligence?\nI seek your help in finding a cure for Myalgic Encephalomyelitis (M.E.).\nHelp us save the #MillionsMissing, and in doing so, help save our homo sapiens sapiens world.`,
+            "contact": `You can reach me here:\nhttps://nicolaspa.com/`
+        };
+
+        function showContent(section) {
+            // Réinitialiser la sortie
+            sectionOutput.textContent = "";
+            let text = sections[section];
+            let i = 0;
+
+            function typeSectionText() {
+                if (i < text.length) {
+                    sectionOutput.textContent += text[i];
+                    i++;
+                    setTimeout(typeSectionText, 30);
+                }
+            }
+
+            typeSectionText();
+        }
+
+        // Lancer l'intro dès le chargement
+        typeIntroText();
     </script>
 </body>
 </html>
