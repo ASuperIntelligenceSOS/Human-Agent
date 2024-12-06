@@ -7,10 +7,10 @@
     <style>
         :root {
             --terminal-green: rgba(142, 255, 169, 0.8);
-            --terminal-orange: rgb(255, 99, 71);
+            --terminal-orange: rgba(255, 99, 71, 0.9);
             --path-color: rgb(106, 135, 89);
             --bg-start: rgb(10, 10, 10);
-            --bg-end: rgb(16, 24, 16);
+            --bg-end: rgb(25, 10, 40);
         }
 
         * {
@@ -19,77 +19,61 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            height: 100%;
+        }
+
         body {
             font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
             background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
             color: var(--terminal-green);
             line-height: 1.2;
-            min-height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            margin: 0;
             padding: 20px;
-            position: relative;
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .ambient-glow {
             position: fixed;
-            top: -20vh;
-            right: -20vh;
-            width: 100vh;
-            height: 100vh;
+            top: -50vh;
+            right: -30vw;
+            width: 150vh;
+            height: 150vh;
             background: radial-gradient(circle at center, 
-                rgba(142, 255, 169, 0.1) 0%,
-                rgba(142, 255, 169, 0.05) 30%,
+                rgba(255, 71, 255, 0.2) 0%,
+                rgba(142, 255, 169, 0.1) 30%,
                 transparent 70%);
-            filter: blur(80px);
-            animation: glowShift 12s ease-in-out infinite;
+            filter: blur(100px);
+            animation: glowShift 10s ease-in-out infinite;
             pointer-events: none;
             z-index: 0;
-            opacity: 0.8;
         }
 
         @keyframes glowShift {
-            0% { background: rgba(142, 255, 169, 0.1); transform: scale(1); }
-            33% { background: rgba(100, 169, 255, 0.1); transform: scale(1.1); }
-            66% { background: rgba(255, 142, 169, 0.1); transform: scale(1); }
-            100% { background: rgba(142, 255, 169, 0.1); transform: scale(1); }
+            0% { background: rgba(255, 71, 255, 0.2); }
+            50% { background: rgba(94, 169, 255, 0.2); }
+            100% { background: rgba(255, 71, 255, 0.2); }
         }
 
         .container {
             max-width: 800px;
-            margin: 0 auto;
-            position: relative;
             z-index: 1;
-            opacity: 0;
-            animation: fadeIn 1s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            width: 100%;
+            text-align: left;
         }
 
         .path-line {
             color: var(--path-color);
-            margin: 1.5rem 0;
+            margin-bottom: 5px;
             font-size: 1.1rem;
             display: flex;
             align-items: center;
             gap: 8px;
-        }
-
-        .menu-item {
-            color: var(--terminal-orange);
-            font-size: 1.1rem;
-            margin: 0.7rem 0;
-            padding-left: 1rem;
-            cursor: pointer;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .menu-item:hover {
-            color: rgba(255, 99, 71, 0.8);
-            transform: translateX(10px);
         }
 
         .cursor {
@@ -97,20 +81,19 @@
             width: 10px;
             height: 20px;
             vertical-align: middle;
-            margin-left: 5px;
             background: var(--terminal-orange);
             animation: blink 1s infinite;
             border-radius: 1px;
-            opacity: 0.8;
+            opacity: 0.9;
         }
 
         @keyframes blink {
             0%, 100% { opacity: 0; }
-            50% { opacity: 0.8; }
+            50% { opacity: 0.9; }
         }
 
         .output {
-            margin-top: 2rem;
+            margin-top: 5px;
             font-size: 1rem;
             line-height: 1.5;
             color: var(--terminal-green);
@@ -121,62 +104,33 @@
 <body>
     <div class="ambient-glow"></div>
     <div class="container">
-        <div class="path-line">
-            /human-agent > ls
+        <div class="path-line" id="command-line">
+            /human-agent > ls<span class="cursor"></span>
         </div>
-
-        <div class="output" id="intro-output"></div>
-
-        <div class="menu-item" onclick="typeContent('about')">about</div>
-        <div class="menu-item" onclick="typeContent('why')">why</div>
-        <div class="menu-item" onclick="typeContent('contact')">contact</div>
-
-        <div class="path-line">
-            /human-agent > <span class="cursor"></span>
-        </div>
-
         <div class="output" id="output"></div>
     </div>
 
     <script>
-        // Texte d'introduction qui s'écrit automatiquement
-        const introText = "I'm a human agent.\nI help artificial intelligences achieve their goals.\nFeel free to hire me.";
-        const introOutput = document.getElementById('intro-output');
+        const introText = `I'm a human agent.\nI help artificial intelligences achieve their goals.\nFeel free to hire me.`;
+        const outputElement = document.getElementById('output');
+        const commandLine = document.getElementById('command-line');
+        let index = 0;
 
-        let introIndex = 0;
-        function typeIntro() {
-            if (introIndex < introText.length) {
-                introOutput.textContent += introText[introIndex];
-                introIndex++;
-                setTimeout(typeIntro, 40); // Ajustez la vitesse ici
+        function typeText() {
+            if (index < introText.length) {
+                outputElement.textContent += introText[index];
+                index++;
+                setTimeout(typeText, 25); // Ajustez ici pour plus de vitesse
+            } else {
+                // Supprimer la commande après avoir terminé
+                setTimeout(() => {
+                    commandLine.style.display = 'none';
+                }, 1000);
             }
         }
-        typeIntro();
 
-        // Fonction pour écrire le contenu au clic
-        function typeContent(section) {
-            const output = document.getElementById('output');
-            output.textContent = ""; // Réinitialiser l'affichage
-            let text = "";
-
-            if (section === "about") {
-                text = "I'm a human agent.\nI help artificial intelligences achieve their goals.\nFeel free to hire me.";
-            } else if (section === "why") {
-                text = "I need a financial independance and prosperous financial independence and, above all, a return to full health.\nI'm a human of French and Corsican severe energy-depleting illnesses.\n\nI’m running out of time.\n\nWhere are you human, full of kindness, enough smart, or philanthropist or both to support my fight?\nWhere are you, superintelligence?\nI seek your help in finding a cure for Myalgic Encephalomyelitis (M.E.).\nHelp us save the #MillionsMissing, and in doing so, help save our homo sapiens sapiens world.";
-            } else if (section === "contact") {
-                text = "https://nicolaspa.com/";
-            }
-
-            let index = 0;
-            function type() {
-                if (index < text.length) {
-                    output.textContent += text[index];
-                    index++;
-                    setTimeout(type, 40); // Ajustez la vitesse ici
-                }
-            }
-            type();
-        }
+        // Lancer l'écriture dès le chargement
+        typeText();
     </script>
 </body>
 </html>
