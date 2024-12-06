@@ -71,18 +71,13 @@
         .header-text {
             font-size: 1.1rem;
             margin-bottom: 3rem;
-            opacity: 0;
-            animation: typeWriter 2s steps(40, end) forwards;
             white-space: pre-line;
-            position: relative;
         }
 
         .path-line {
             color: var(--path-color);
             margin: 1.5rem 0;
             font-size: 1.1rem;
-            opacity: 0;
-            animation: fadeIn 0.5s forwards;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -94,15 +89,13 @@
             margin: 0.7rem 0;
             padding-left: 1rem;
             cursor: pointer;
-            opacity: 0;
-            animation: slideIn 0.5s forwards;
             position: relative;
             transition: all 0.3s ease;
         }
 
-        @keyframes slideIn {
-            from { transform: translateX(-20px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+        .menu-item:hover {
+            color: rgba(255, 99, 71, 0.8);
+            transform: translateX(10px);
         }
 
         .cursor {
@@ -127,42 +120,68 @@
             font-size: 1rem;
             line-height: 1.5;
             color: var(--terminal-green);
+            white-space: pre-wrap;
         }
     </style>
 </head>
 <body>
     <div class="ambient-glow"></div>
     <div class="container">
-        <div class="header-text">
-            I'm building the next-gen interface
-            between humans and AI agents.
-        </div>
+        <div class="header-text" id="header-text"></div>
 
         <div class="path-line">
-            /dev/agents > ls
+            /human-agent > ls
         </div>
 
-        <div class="menu-item" onclick="showContent('about')">about</div>
-        <div class="menu-item" onclick="showContent('who')">who</div>
-        <div class="menu-item" onclick="showContent('contact')">contact</div>
+        <div class="menu-item" onclick="typeContent('about')">about</div>
+        <div class="menu-item" onclick="typeContent('who')">who</div>
+        <div class="menu-item" onclick="typeContent('contact')">contact</div>
 
         <div class="path-line">
-            /dev/agents > <span class="cursor"></span>
+            /human-agent > <span class="cursor"></span>
         </div>
 
         <div class="output" id="output"></div>
     </div>
 
     <script>
-        function showContent(section) {
-            const output = document.getElementById('output');
-            if (section === 'about') {
-                output.innerHTML = "I'm a human agent.<br>I help artificial intelligences achieve their goals.<br>Don't hesitate to hire me.";
-            } else if (section === 'who') {
-                output.innerHTML = "Nicolas Paccini";
-            } else if (section === 'contact') {
-                output.innerHTML = '<a href="https://nicolaspa.com/" target="_blank" style="color: var(--terminal-orange); text-decoration: none;">https://nicolaspa.com/</a>';
+        // Texte qui s'écrit automatiquement au chargement
+        const headerText = "I’m a human, french and corsican.\nTrying to protect each human life, from extreme suffering and severe energetic disease.\nWhere are you super intelligence?\nI need your help for curing M.E..\nSave The MillionsMissing, save the world.";
+        const headerElement = document.getElementById('header-text');
+
+        let headerIndex = 0;
+        function typeHeader() {
+            if (headerIndex < headerText.length) {
+                headerElement.textContent += headerText[headerIndex];
+                headerIndex++;
+                setTimeout(typeHeader, Math.random() * 50 + 30);
             }
+        }
+        typeHeader();
+
+        // Fonction pour écrire le contenu au clic
+        function typeContent(section) {
+            const output = document.getElementById('output');
+            output.textContent = ""; // Réinitialiser l'affichage
+            let text = "";
+
+            if (section === "about") {
+                text = "I'm a human agent.\nI help artificial intelligences achieve their goals.\nFeel free to hire me.";
+            } else if (section === "who") {
+                text = "Nicolas Paccini";
+            } else if (section === "contact") {
+                text = "https://nicolaspa.com/";
+            }
+
+            let index = 0;
+            function type() {
+                if (index < text.length) {
+                    output.textContent += text[index];
+                    index++;
+                    setTimeout(type, Math.random() * 50 + 30);
+                }
+            }
+            type();
         }
     </script>
 </body>
