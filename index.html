@@ -68,12 +68,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .header-text {
-            font-size: 1.1rem;
-            margin-bottom: 3rem;
-            white-space: pre-line;
-        }
-
         .path-line {
             color: var(--path-color);
             margin: 1.5rem 0;
@@ -127,14 +121,14 @@
 <body>
     <div class="ambient-glow"></div>
     <div class="container">
-        <div class="header-text" id="header-text"></div>
-
         <div class="path-line">
             /human-agent > ls
         </div>
 
+        <div class="output" id="intro-output"></div>
+
         <div class="menu-item" onclick="typeContent('about')">about</div>
-        <div class="menu-item" onclick="typeContent('who')">who</div>
+        <div class="menu-item" onclick="typeContent('why')">why</div>
         <div class="menu-item" onclick="typeContent('contact')">contact</div>
 
         <div class="path-line">
@@ -145,19 +139,19 @@
     </div>
 
     <script>
-        // Texte qui s'écrit automatiquement au chargement
-        const headerText = "I’m a human, french and corsican.\nTrying to protect each human life, from extreme suffering and severe energetic disease.\nWhere are you super intelligence?\nI need your help for curing M.E..\nSave The MillionsMissing, save the world.";
-        const headerElement = document.getElementById('header-text');
+        // Texte d'introduction qui s'écrit automatiquement
+        const introText = "I'm a human agent.\nI help artificial intelligences achieve their goals.\nFeel free to hire me.";
+        const introOutput = document.getElementById('intro-output');
 
-        let headerIndex = 0;
-        function typeHeader() {
-            if (headerIndex < headerText.length) {
-                headerElement.textContent += headerText[headerIndex];
-                headerIndex++;
-                setTimeout(typeHeader, Math.random() * 50 + 30);
+        let introIndex = 0;
+        function typeIntro() {
+            if (introIndex < introText.length) {
+                introOutput.textContent += introText[introIndex];
+                introIndex++;
+                setTimeout(typeIntro, 40); // Ajustez la vitesse ici
             }
         }
-        typeHeader();
+        typeIntro();
 
         // Fonction pour écrire le contenu au clic
         function typeContent(section) {
@@ -167,8 +161,8 @@
 
             if (section === "about") {
                 text = "I'm a human agent.\nI help artificial intelligences achieve their goals.\nFeel free to hire me.";
-            } else if (section === "who") {
-                text = "Nicolas Paccini";
+            } else if (section === "why") {
+                text = "I need a financial independance and prosperous financial independence and, above all, a return to full health.\nI'm a human of French and Corsican severe energy-depleting illnesses.\n\nI’m running out of time.\n\nWhere are you human, full of kindness, enough smart, or philanthropist or both to support my fight?\nWhere are you, superintelligence?\nI seek your help in finding a cure for Myalgic Encephalomyelitis (M.E.).\nHelp us save the #MillionsMissing, and in doing so, help save our homo sapiens sapiens world.";
             } else if (section === "contact") {
                 text = "https://nicolaspa.com/";
             }
@@ -178,7 +172,7 @@
                 if (index < text.length) {
                     output.textContent += text[index];
                     index++;
-                    setTimeout(type, Math.random() * 50 + 30);
+                    setTimeout(type, 40); // Ajustez la vitesse ici
                 }
             }
             type();
