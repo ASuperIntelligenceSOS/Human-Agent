@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Human Agent Terminal</title>
+    <title>Terminal Interface</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
         :root {
             --terminal-green: rgba(142, 255, 169, 0.8);
-            --terminal-orange: rgb(255, 99, 71);
+            --terminal-orange: rgba(255, 99, 71, 0.9);
             --path-color: rgb(106, 135, 89);
-            --bg-color: rgb(10, 10, 10);
+            --bg-start: rgb(10, 10, 10);
+            --bg-end: rgb(25, 10, 40);
         }
 
         * {
@@ -18,146 +19,208 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: ui-monospace, 'SF Mono', Menlo, monospace;
-            background: var(--bg-color);
-            color: var(--terminal-green);
-            min-height: 100vh;
-            padding: 20px;
-            position: relative;
-            overflow: hidden;
+        html, body {
+            height: 100%;
         }
 
-        /* Effet de halo amélioré */
+        body {
+            font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+            background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+            color: var(--terminal-green);
+            line-height: 1.2;
+            overflow-y: auto;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
         .ambient-glow {
             position: fixed;
-            top: -30vh;
-            right: -30vh;
-            width: 120vh;
-            height: 120vh;
-            background: radial-gradient(
-                circle at 70% 30%,
-                rgba(142, 255, 169, 0.15) 0%,
-                rgba(142, 255, 169, 0.05) 30%,
-                transparent 70%
-            );
-            filter: blur(80px);
-            animation: colorShift 12s ease-in-out infinite;
+            top: -50vh;
+            right: -30vw;
+            width: 150vh;
+            height: 150vh;
+            background: radial-gradient(circle at center, 
+                rgba(255, 71, 255, 0.2) 0%,
+                rgba(142, 255, 169, 0.1) 30%,
+                transparent 70%);
+            filter: blur(100px);
+            animation: glowShift 10s ease-in-out infinite;
             pointer-events: none;
             z-index: 0;
         }
 
-        @keyframes colorShift {
-            0% { 
-                background: radial-gradient(
-                    circle at 70% 30%,
-                    rgba(142, 255, 169, 0.15) 0%,
-                    rgba(142, 255, 169, 0.05) 30%,
-                    transparent 70%
-                );
-            }
-            33% { 
-                background: radial-gradient(
-                    circle at 70% 30%,
-                    rgba(100, 169, 255, 0.15) 0%,
-                    rgba(100, 169, 255, 0.05) 30%,
-                    transparent 70%
-                );
-            }
-            66% { 
-                background: radial-gradient(
-                    circle at 70% 30%,
-                    rgba(255, 142, 169, 0.15) 0%,
-                    rgba(255, 142, 169, 0.05) 30%,
-                    transparent 70%
-                );
-            }
-            100% { 
-                background: radial-gradient(
-                    circle at 70% 30%,
-                    rgba(142, 255, 169, 0.15) 0%,
-                    rgba(142, 255, 169, 0.05) 30%,
-                    transparent 70%
-                );
-            }
+        @keyframes glowShift {
+            0% { background: rgba(255, 71, 255, 0.2); }
+            50% { background: rgba(94, 169, 255, 0.2); }
+            100% { background: rgba(255, 71, 255, 0.2); }
         }
 
         .container {
             max-width: 800px;
-            margin: 60px auto;
-            position: relative;
             z-index: 1;
+            width: 100%;
+            text-align: left;
         }
 
         .path-line {
             color: var(--path-color);
-            margin: 1.5rem 0;
+            margin-bottom: 5px;
             font-size: 1.1rem;
-        }
-
-        .output {
-            margin-top: 20px;
-            line-height: 1.6;
-            opacity: 0;
-            animation: fadeIn 0.5s forwards;
-        }
-
-        .message {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            opacity: 0;
-            animation: typeWriter 2s steps(40, end) forwards;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .cursor {
             display: inline-block;
-            width: 8px;
-            height: 15px;
-            background: var(--terminal-orange);
-            animation: blink 1s step-end infinite;
-            margin-left: 5px;
+            width: 10px;
+            height: 20px;
             vertical-align: middle;
+            background: var(--terminal-orange);
+            animation: blink 1s infinite;
+            border-radius: 1px;
+            opacity: 0.9;
         }
 
         @keyframes blink {
-            50% { opacity: 0; }
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.9; }
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .output {
+            margin-top: 5px;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: var(--terminal-green);
+            white-space: pre-wrap;
+        }
+
+        .menu-item {
+            color: var(--terminal-orange);
+            font-size: 1.1rem;
+            margin: 10px 0;
+            cursor: pointer;
+            padding-left: 20px;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover {
+            color: rgba(255, 99, 71, 1);
+            transform: translateX(10px);
+        }
+
+        .menu-item.disabled {
+            pointer-events: none;
+            color: rgba(255, 99, 71, 0.5);
+        }
+
+        .link {
+            color: var(--terminal-orange);
+            text-decoration: none;
+        }
+
+        .link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="ambient-glow"></div>
-    
     <div class="container">
-        <div class="path-line">
-            /human-agent > ls
+        <div class="path-line" id="command-line">
+            /human-agent > ls<span class="cursor"></span>
         </div>
-
-        <div class="output">
-            <div class="message">I'm a human of French and Corsican heritage.</div>
-            <div class="message" style="animation-delay: 1s">Dedicated to protecting human life from extreme suffering and severe energy-depleting illnesses.</div>
-            <div class="message" style="animation-delay: 2s">Where are you, superintelligence?</div>
-            <div class="message" style="animation-delay: 3s">Help us save the #MillionsMissing, and in doing so, help save the world.</div>
-        </div>
-
-        <div class="path-line">
-            /human-agent ><span class="cursor"></span>
-        </div>
+        <div class="output" id="output"></div>
+        <div class="menu-item" id="why-menu" onclick="showContent('why')">why</div>
+        <div class="menu-item" id="contact-menu" onclick="showContent('contact')">contact</div>
+        <div class="output" id="section-output"></div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const messages = document.querySelectorAll('.message');
-            messages.forEach((message, index) => {
-                setTimeout(() => {
-                    message.style.opacity = '1';
-                }, index * 1000);
-            });
-        });
+        const introText = `I'm a human agent.\nI help artificial intelligences achieve their goals.\nFeel free to hire me.`;
+        const outputElement = document.getElementById('output');
+        const commandLine = document.getElementById('command-line');
+        const sectionOutput = document.getElementById('section-output');
+        const whyMenu = document.getElementById('why-menu');
+        const contactMenu = document.getElementById('contact-menu');
+        let index = 0;
+        let isWriting = false;
+
+        function typeIntroText() {
+            if (index < introText.length) {
+                outputElement.textContent += introText[index];
+                index++;
+                setTimeout(typeIntroText, 10);
+            }
+        }
+
+        const sections = {
+            "why": `I need financial independence and, above all, a return to full health.\nI'm a human of French and Corsican origin facing severe energy-depleting illnesses.\n\nI'm running out of time.\n\nWhere are you human, full of kindness, smart, or philanthropist—or both—to support my fight?\nWhere are you, superintelligence?\nI seek your help in finding a cure for Myalgic Encephalomyelitis (M.E.).\nHelp us save the #MillionsMissing, and in doing so, help save our homo sapiens sapiens world.`,
+            "contact": `You can reach me here: https://nicolaspa.com/`
+        };
+
+        function disableMenus() {
+            whyMenu.classList.add('disabled');
+            contactMenu.classList.add('disabled');
+        }
+
+        function enableMenus() {
+            whyMenu.classList.remove('disabled');
+            contactMenu.classList.remove('disabled');
+        }
+
+        function showContent(section) {
+            if (isWriting) return; // Bloquer les clics pendant l'écriture
+
+            isWriting = true;
+            disableMenus();
+            sectionOutput.innerHTML = "";
+            let text = sections[section];
+
+            // Gérer la section contact différemment
+            if (section === "contact") {
+                const textParts = text.split("https://");
+                const textPart = textParts[0];
+                const url = "https://" + textParts[1];
+                let i = 0;
+
+                function typeContactText() {
+                    if (i < textPart.length) {
+                        sectionOutput.innerHTML += textPart[i];
+                        i++;
+                        setTimeout(typeContactText, 10);
+                    } else {
+                        sectionOutput.innerHTML += `<a class="link" href="${url}" target="_blank">${url}</a>`;
+                        isWriting = false;
+                        enableMenus();
+                    }
+                }
+
+                typeContactText();
+            } else {
+                // Gérer les autres sections
+                let i = 0;
+                function typeSectionText() {
+                    if (i < text.length) {
+                        sectionOutput.innerHTML += text[i];
+                        i++;
+                        setTimeout(typeSectionText, 10);
+                    } else {
+                        isWriting = false;
+                        enableMenus();
+                    }
+                }
+                typeSectionText();
+            }
+        }
+
+        typeIntroText();
     </script>
 </body>
 </html>
