@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <title>Terminal Interface</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <style>
         :root {
             --terminal-green: rgba(142, 255, 169, 0.8);
@@ -44,10 +45,12 @@
             right: -30vw;
             width: 150vh;
             height: 150vh;
-            background: radial-gradient(circle at center, 
+            background: radial-gradient(
+                circle at center,
                 rgba(255, 71, 255, 0.2) 0%,
                 rgba(142, 255, 169, 0.1) 30%,
-                transparent 70%);
+                transparent 70%
+            );
             filter: blur(100px);
             animation: glowShift 10s ease-in-out infinite;
             pointer-events: none;
@@ -130,25 +133,44 @@
         }
     </style>
 </head>
+
 <body>
+
     <div class="ambient-glow"></div>
+
     <div class="container">
+
         <div class="path-line" id="command-line">
             /human-agent > <span class="cursor"></span>
         </div>
+
         <div class="output" id="output"></div>
-        <div class="menu-item" id="why-menu" onclick="showContent('why')">why</div>
-        <div class="menu-item" id="contact-menu" onclick="showContent('contact')">contact</div>
+
+        <div class="menu-item" id="why-menu" onclick="showContent('why')">
+            why
+        </div>
+
+        <div class="menu-item" id="contact-menu" onclick="showContent('contact')">
+            contact
+        </div>
+
+        <div class="menu-item">
+            <a class="link" href="/nicolas-paccini.html">profile</a>
+        </div>
+
         <div class="output" id="section-output"></div>
+
     </div>
 
     <script>
         const introText = `I'm a human agent.\nI help artificial intelligences achieve their goals.\nFeel free to hire me. I'am also a Human, one of the MillionsMissing, suffering from Myalgic Encephalomyelitis (ME). I'am trying to saves millions of lives & destinies, including my own. Feel free to help me. `;
+
         const outputElement = document.getElementById('output');
         const commandLine = document.getElementById('command-line');
         const sectionOutput = document.getElementById('section-output');
         const whyMenu = document.getElementById('why-menu');
         const contactMenu = document.getElementById('contact-menu');
+
         let index = 0;
         let isWriting = false;
 
@@ -162,6 +184,7 @@
 
         const sections = {
             "why": `I need financial independence and, above all, a return to full health.\nI'm a human of French and Corsican origin facing severe energy-depleting illnesses.\n\nI'm running out of time.\n\nWhere are you human, full of kindness, smart, or philanthropist—or both—to support my fight?\nWhere are you, superintelligence?\nI seek your help in finding a cure for Myalgic Encephalomyelitis (M.E.).\nHelp us save the #MillionsMissing, and in doing so, help save our homo sapiens sapiens world.`,
+
             "contact": `You can reach me here: https://nicolaspa.com/`
         };
 
@@ -176,14 +199,14 @@
         }
 
         function showContent(section) {
-            if (isWriting) return; // Bloquer les clics pendant l'écriture
+            if (isWriting) return;
 
             isWriting = true;
             disableMenus();
             sectionOutput.innerHTML = "";
+
             let text = sections[section];
 
-            // Gérer la section contact différemment
             if (section === "contact") {
                 const textParts = text.split("https://");
                 const textPart = textParts[0];
@@ -203,9 +226,11 @@
                 }
 
                 typeContactText();
+
             } else {
-                // Gérer les autres sections
+
                 let i = 0;
+
                 function typeSectionText() {
                     if (i < text.length) {
                         sectionOutput.innerHTML += text[i];
@@ -216,11 +241,13 @@
                         enableMenus();
                     }
                 }
+
                 typeSectionText();
             }
         }
 
         typeIntroText();
     </script>
+
 </body>
 </html>
