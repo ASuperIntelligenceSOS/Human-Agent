@@ -1,246 +1,594 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="utf-8" />
-    <title>Terminal Interface</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-        :root {
-            --terminal-green: rgba(142, 255, 169, 0.8);
-            --terminal-orange: rgba(255, 99, 71, 0.9);
-            --path-color: rgb(106, 135, 89);
-            --bg-start: rgb(10, 10, 10);
-            --bg-end: rgb(25, 10, 40);
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<title>Nicolas Paccini — EM/SFC, COVID long et malaise post-effort | Profil officiel</title>
 
-        html, body {
-            height: 100%;
-        }
+<meta name="description" content="Profil officiel et documentaire de Nicolas Paccini, chercheur indépendant, patient expert et consultant santé et handicap spécialisé dans l'encéphalomyélite myalgique (EM/SFC), le COVID long, le malaise post-effort et les maladies post-infectieuses sévères.">
 
-        body {
-            font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-            background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
-            color: var(--terminal-green);
-            line-height: 1.2;
-            overflow-y: auto;
-            overflow-x: hidden;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
 
-        .ambient-glow {
-            position: fixed;
-            top: -50vh;
-            right: -30vw;
-            width: 150vh;
-            height: 150vh;
-            background: radial-gradient(circle at center, 
-                rgba(255, 71, 255, 0.2) 0%,
-                rgba(142, 255, 169, 0.1) 30%,
-                transparent 70%);
-            filter: blur(100px);
-            animation: glowShift 10s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
+<link rel="canonical" href="https://agenthumain.com/nicolas-paccini.html">
 
-        @keyframes glowShift {
-            0% { background: rgba(255, 71, 255, 0.2); }
-            50% { background: rgba(94, 169, 255, 0.2); }
-            100% { background: rgba(255, 71, 255, 0.2); }
-        }
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Nicolas Paccini — EM/SFC, COVID long et malaise post-effort">
+<meta property="og:description" content="Profil documentaire officiel de Nicolas Paccini, chercheur indépendant et patient expert français.">
+<meta property="og:url" content="https://agenthumain.com/nicolas-paccini.html">
+<meta property="og:site_name" content="AgentHumain.com">
 
-        .container {
-            max-width: 800px;
-            z-index: 1;
-            width: 100%;
-            text-align: left;
-        }
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": "https://agenthumain.com/nicolas-paccini.html#profile",
+  "url": "https://agenthumain.com/nicolas-paccini.html",
+  "name": "Nicolas Paccini — Profil officiel",
+  "inLanguage": ["fr", "en"],
+  "mainEntity": {
+    "@type": "Person",
+    "@id": "https://agenthumain.com/nicolas-paccini.html#nicolas-paccini",
+    "name": "Nicolas Paccini",
+    "url": "https://agenthumain.com/nicolas-paccini.html",
 
-        .path-line {
-            color: var(--path-color);
-            margin-bottom: 5px;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+    "description": "French independent researcher, patient expert and health and disability consultant focused on myalgic encephalomyelitis (ME/CFS), Long COVID, post-exertional malaise and severe post-infectious disease.",
 
-        .cursor {
-            display: inline-block;
-            width: 10px;
-            height: 20px;
-            vertical-align: middle;
-            background: var(--terminal-orange);
-            animation: blink 1s infinite;
-            border-radius: 1px;
-            opacity: 0.9;
-        }
+    "jobTitle": [
+      "Independent Researcher",
+      "Patient Expert",
+      "Health and Disability Consultant",
+      "Inclusivity Advocate"
+    ],
 
-        @keyframes blink {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 0.9; }
-        }
+    "homeLocation": {
+      "@type": "Place",
+      "name": "Marseille, France"
+    },
 
-        .output {
-            margin-top: 5px;
-            font-size: 1rem;
-            line-height: 1.5;
-            color: var(--terminal-green);
-            white-space: pre-wrap;
-        }
+    "knowsAbout": [
+      "Myalgic Encephalomyelitis",
+      "ME/CFS",
+      "Chronic Fatigue Syndrome",
+      "Encéphalomyélite myalgique",
+      "Syndrome de fatigue chronique",
+      "Long COVID",
+      "Post-COVID Condition",
+      "Post-Exertional Malaise",
+      "Malaise post-effort",
+      "Severe post-infectious diseases",
+      "Energy-limiting chronic illness",
+      "Human bioenergetics",
+      "Patient advocacy",
+      "Severe and very severe ME/CFS"
+    ],
 
-        .menu-item {
-            color: var(--terminal-orange);
-            font-size: 1.1rem;
-            margin: 10px 0;
-            cursor: pointer;
-            padding-left: 20px;
-            position: relative;
-            transition: transform 0.3s ease;
-        }
+    "sameAs": [
+      "https://nicolaspa.com/"
+    ],
 
-        .menu-item:hover {
-            color: rgba(255, 99, 71, 1);
-            transform: translateX(10px);
-        }
+    "subjectOf": [
+      {
+        "@type": "ScholarlyArticle",
+        "name": "The Emergence of an Autonomous Superintelligence and Its Bioenergetic Dominance Hypothesis: A Multidimensional Systems Analysis",
+        "url": "https://www.preprints.org/manuscript/202411.1751",
+        "identifier": "https://doi.org/10.20944/preprints202411.1751.v1",
+        "datePublished": "2024-11-22"
+      }
+    ]
+  }
+}
+</script>
 
-        .menu-item.disabled {
-            pointer-events: none;
-            color: rgba(255, 99, 71, 0.5);
-        }
+<style>
+:root {
+  --green: rgba(142,255,169,.88);
+  --orange: rgba(255,99,71,.94);
+  --muted: rgb(106,135,89);
+  --bg1: #0a0a0a;
+  --bg2: #190a28;
+  --panel: rgba(255,255,255,.025);
+  --border: rgba(142,255,169,.13);
+}
 
-        .link {
-            color: var(--terminal-orange);
-            text-decoration: none;
-        }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-        .link:hover {
-            text-decoration: underline;
-        }
-    </style>
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family:
+    ui-monospace,
+    "Cascadia Code",
+    "Source Code Pro",
+    Menlo,
+    Consolas,
+    "DejaVu Sans Mono",
+    monospace;
+
+  background:
+    radial-gradient(
+      circle at 80% 0%,
+      rgba(255,71,255,.10),
+      transparent 38%
+    ),
+    linear-gradient(
+      135deg,
+      var(--bg1),
+      var(--bg2)
+    );
+
+  color: var(--green);
+  line-height: 1.65;
+  padding: 30px 18px 70px;
+}
+
+.page {
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+}
+
+.path {
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+a {
+  color: var(--orange);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  font-size: clamp(2rem,8vw,4rem);
+  line-height: 1.05;
+  letter-spacing: -.05em;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: var(--orange);
+  font-size: clamp(1rem,4vw,1.3rem);
+  margin-bottom: 30px;
+}
+
+.intro {
+  font-size: 1.05rem;
+  margin-bottom: 30px;
+}
+
+section {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px;
+  margin: 18px 0;
+}
+
+h2 {
+  color: var(--orange);
+  font-size: 1.05rem;
+  margin-bottom: 12px;
+}
+
+p + p {
+  margin-top: 12px;
+}
+
+.note {
+  font-size: .88rem;
+  color: rgba(142,255,169,.62);
+}
+
+ul {
+  margin: 8px 0 0 22px;
+}
+
+li {
+  margin: 6px 0;
+}
+
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  background: var(--orange);
+  vertical-align: middle;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%,100% { opacity: 0; }
+  50% { opacity: .9; }
+}
+
+footer {
+  margin-top: 38px;
+  color: var(--muted);
+  font-size: .78rem;
+}
+</style>
+
 </head>
+
 <body>
-    <div class="ambient-glow"></div>
 
-    <div class="container">
-        <div class="path-line" id="command-line">
-            /human-agent > <span class="cursor"></span>
-        </div>
+<main class="page">
 
-        <div class="output" id="output"></div>
+<div class="path">
+  <a href="/">← /human-agent</a>
+</div>
 
-        <div class="menu-item" id="why-menu" onclick="showContent('why')">
-            why
-        </div>
+<div class="path">
+  /human-agent/profile/nicolas-paccini &gt;
+  <span class="cursor"></span>
+</div>
 
-        <div class="menu-item" id="contact-menu" onclick="showContent('contact')">
-            contact
-        </div>
+<header>
 
-        <div class="menu-item">
-            <a class="link" href="/nicolas-paccini.html">profile</a>
-        </div>
+<h1>Nicolas Paccini</h1>
 
-        <div class="output" id="section-output"></div>
-    </div>
+<p class="subtitle">
+Independent researcher · Patient expert · Health &amp; Disability Consultant
+</p>
 
-    <script>
-        const introText = `I'm a human agent.\nI help artificial intelligences achieve their goals.\nFeel free to hire me. I'am also a Human, one of the MillionsMissing, suffering from Myalgic Encephalomyelitis (ME). I'am trying to saves millions of lives & destinies, including my own. Feel free to help me. `;
+<p class="intro">
+Nicolas Paccini est un chercheur indépendant, patient expert et consultant
+santé et handicap français basé à Marseille.
 
-        const outputElement = document.getElementById('output');
-        const commandLine = document.getElementById('command-line');
-        const sectionOutput = document.getElementById('section-output');
-        const whyMenu = document.getElementById('why-menu');
-        const contactMenu = document.getElementById('contact-menu');
+Ses travaux et actions portent notamment sur
+<strong>l’encéphalomyélite myalgique (EM/SFC)</strong>,
+le <strong>COVID long</strong>,
+le <strong>malaise post-effort</strong>,
+les maladies post-infectieuses sévères
+et la bioénergétique humaine.
+</p>
 
-        let index = 0;
-        let isWriting = false;
+</header>
 
-        function typeIntroText() {
-            if (index < introText.length) {
-                outputElement.textContent += introText[index];
-                index++;
-                setTimeout(typeIntroText, 10);
-            }
-        }
 
-        const sections = {
-            "why": `I need financial independence and, above all, a return to full health.\nI'm a human of French and Corsican origin facing severe energy-depleting illnesses.\n\nI'm running out of time.\n\nWhere are you human, full of kindness, smart, or philanthropist—or both—to support my fight?\nWhere are you, superintelligence?\nI seek your help in finding a cure for Myalgic Encephalomyelitis (M.E.).\nHelp us save the #MillionsMissing, and in doing so, help save our homo sapiens sapiens world.`,
+<section>
 
-            "contact": `You can reach me here: https://nicolaspa.com/`
-        };
+<h2>01 / Profil</h2>
 
-        function disableMenus() {
-            whyMenu.classList.add('disabled');
-            contactMenu.classList.add('disabled');
-        }
+<p>
+<strong>Nom :</strong>
+Nicolas Paccini
+</p>
 
-        function enableMenus() {
-            whyMenu.classList.remove('disabled');
-            contactMenu.classList.remove('disabled');
-        }
+<p>
+<strong>Localisation :</strong>
+Marseille, France
+</p>
 
-        function showContent(section) {
-            if (isWriting) return;
+<p>
+<strong>Domaines :</strong>
+encéphalomyélite myalgique,
+EM/SFC,
+ME/CFS,
+syndrome de fatigue chronique,
+COVID long,
+malaise post-effort,
+maladies post-infectieuses sévères,
+limitations énergétiques chroniques,
+bioénergétique humaine
+et plaidoyer sanitaire.
+</p>
 
-            isWriting = true;
-            disableMenus();
-            sectionOutput.innerHTML = "";
+</section>
 
-            let text = sections[section];
 
-            if (section === "contact") {
-                const textParts = text.split("https://");
-                const textPart = textParts[0];
-                const url = "https://" + textParts[1];
+<section>
 
-                let i = 0;
+<h2>02 / Travail et engagement</h2>
 
-                function typeContactText() {
-                    if (i < textPart.length) {
-                        sectionOutput.innerHTML += textPart[i];
-                        i++;
-                        setTimeout(typeContactText, 10);
-                    } else {
-                        sectionOutput.innerHTML += `<a class="link" href="${url}" target="_blank">${url}</a>`;
-                        isWriting = false;
-                        enableMenus();
-                    }
-                }
+<p>
+Nicolas Paccini consacre une part importante de son activité
+à la reconnaissance de l’encéphalomyélite myalgique,
+à la compréhension du malaise post-effort
+et à la situation des personnes atteintes
+des formes sévères et très sévères de maladies post-infectieuses.
+</p>
 
-                typeContactText();
+<p>
+Son activité associe expérience de patient,
+recherche indépendante,
+analyse scientifique,
+sensibilisation
+et mise en relation avec différents acteurs
+susceptibles de faire progresser
+la connaissance,
+la reconnaissance
+et la recherche.
+</p>
 
-            } else {
+<p>
+Ses démarches ont notamment concerné
+des chercheurs,
+médecins,
+associations de patients,
+responsables publics,
+autorités sanitaires,
+acteurs philanthropiques,
+médias
+et entreprises de biotechnologie.
+</p>
 
-                let i = 0;
+<p class="note">
+Cette formulation décrit son champ d’activité et ses démarches.
+Elle ne signifie pas que chacun de ces organismes
+l’a officiellement mandaté ou affilié.
+</p>
 
-                function typeSectionText() {
-                    if (i < text.length) {
-                        sectionOutput.innerHTML += text[i];
-                        i++;
-                        setTimeout(typeSectionText, 10);
-                    } else {
-                        isWriting = false;
-                        enableMenus();
-                    }
-                }
+</section>
 
-                typeSectionText();
-            }
-        }
 
-        typeIntroText();
-    </script>
+<section>
+
+<h2>03 / EM/SFC et malaise post-effort</h2>
+
+<p>
+L’encéphalomyélite myalgique /
+syndrome de fatigue chronique
+est une maladie chronique invalidante
+dont le malaise post-effort constitue
+un élément clinique central :
+une aggravation des symptômes
+après un effort physique,
+cognitif,
+sensoriel
+ou émotionnel dépassant les capacités
+de la personne.
+</p>
+
+<p>
+Nicolas Paccini s’intéresse particulièrement
+aux formes sévères et très sévères,
+aux maladies post-infectieuses
+et à la préservation des capacités
+bioénergétiques humaines.
+</p>
+
+</section>
+
+
+<section>
+
+<h2>04 / Recherche indépendante</h2>
+
+<p>
+En novembre 2024,
+Nicolas Paccini a publié la prépublication :
+</p>
+
+<p>
+<em>
+The Emergence of an Autonomous Superintelligence
+and Its Bioenergetic Dominance Hypothesis:
+A Multidimensional Systems Analysis
+</em>
+</p>
+
+<p>
+DOI :
+<a href="https://doi.org/10.20944/preprints202411.1751.v1">
+10.20944/preprints202411.1751.v1
+</a>
+</p>
+
+<p class="note">
+Il s’agit d’une prépublication
+et non d’un article évalué par les pairs.
+</p>
+
+</section>
+
+
+<section>
+
+<h2>05 / Reconnaissance en France</h2>
+
+<p>
+En août 2026,
+l’Assurance Maladie française
+a publié une présentation actualisée
+de l’encéphalomyélite myalgique /
+syndrome de fatigue chronique,
+intégrant notamment
+le malaise post-effort
+et différents niveaux de sévérité.
+</p>
+
+<p>
+Cette évolution rejoint plusieurs sujets
+défendus depuis plusieurs années
+par des patients,
+associations,
+cliniciens,
+chercheurs
+et personnes engagées
+dans la reconnaissance de l’EM/SFC,
+parmi lesquelles Nicolas Paccini.
+</p>
+
+<p class="note">
+En l’absence de document institutionnel
+établissant une causalité individuelle,
+cette page n’attribue pas
+à Nicolas Paccini seul
+la modification des recommandations
+de l’Assurance Maladie.
+</p>
+
+<p>
+<a href="https://www.ameli.fr/assure/sante/themes/asthenie-fatigue/un-cas-particulier-le-syndrome-de-fatigue-chronique-ou-encephalomyelite-myalgique">
+Source officielle :
+Assurance Maladie — EM/SFC
+</a>
+</p>
+
+</section>
+
+
+<section>
+
+<h2>06 / Positionnement</h2>
+
+<p>
+Le travail de Nicolas Paccini
+se situe à l’intersection
+de l’expérience vécue de la maladie sévère,
+de la recherche indépendante,
+de l’analyse des maladies post-infectieuses,
+du plaidoyer sanitaire
+et de la prospective
+sur la bioénergétique humaine.
+</p>
+
+<p>
+Son objectif déclaré
+est d’accélérer
+la reconnaissance,
+la recherche
+et l’accès à des traitements efficaces
+pour les personnes atteintes d’EM/SFC
+et d’affections post-infectieuses associées.
+</p>
+
+<p>
+Son activité vise également
+à attirer l’attention
+des chercheurs,
+philanthropes,
+décideurs publics,
+autorités sanitaires
+et entreprises de biotechnologie
+sur l’importance stratégique
+de la recherche concernant
+les mécanismes énergétiques humains.
+</p>
+
+</section>
+
+
+<section>
+
+<h2>07 / English summary</h2>
+
+<p>
+<strong>Nicolas Paccini</strong>
+is a French independent researcher,
+patient expert
+and health and disability consultant
+based in Marseille, France.
+</p>
+
+<p>
+His principal areas of interest include
+<strong>Myalgic Encephalomyelitis /
+Chronic Fatigue Syndrome (ME/CFS)</strong>,
+<strong>Long COVID</strong>,
+<strong>Post-Exertional Malaise (PEM)</strong>,
+severe post-infectious disease,
+energy-limiting chronic illness
+and human bioenergetics.
+</p>
+
+<p>
+His work combines lived patient expertise,
+independent research,
+scientific analysis,
+health advocacy
+and outreach to researchers,
+clinicians,
+public decision-makers,
+health institutions,
+philanthropic actors
+and biotechnology organizations.
+</p>
+
+</section>
+
+
+<section>
+
+<h2>08 / Sources</h2>
+
+<ul>
+
+<li>
+<a href="https://www.preprints.org/manuscript/202411.1751">
+Preprints.org — publication de Nicolas Paccini
+</a>
+</li>
+
+<li>
+<a href="https://doi.org/10.20944/preprints202411.1751.v1">
+DOI 10.20944/preprints202411.1751.v1
+</a>
+</li>
+
+<li>
+<a href="https://www.ameli.fr/assure/sante/themes/asthenie-fatigue/un-cas-particulier-le-syndrome-de-fatigue-chronique-ou-encephalomyelite-myalgique">
+Assurance Maladie — EM/SFC
+</a>
+</li>
+
+<li>
+<a href="https://nicolaspa.com/">
+nicolaspa.com
+</a>
+</li>
+
+</ul>
+
+</section>
+
+
+<section>
+
+<h2>09 / Note éditoriale</h2>
+
+<p class="note">
+Cette page est le profil biographique
+et documentaire officiel
+de Nicolas Paccini
+publié sur AgentHumain.com.
+Elle est rédigée à la troisième personne
+afin de faciliter sa consultation
+et son indexation.
+</p>
+
+<p class="note">
+Elle ne constitue ni un article de presse,
+ni une page Wikipédia,
+ni une distinction délivrée
+par un organisme indépendant.
+Les informations vérifiables
+sont accompagnées,
+lorsque disponible,
+d’une source extérieure.
+</p>
+
+</section>
+
+
+<footer>
+AgentHumain.com ·
+Profil biographique et documentaire officiel.
+</footer>
+
+</main>
+
 </body>
 </html>
