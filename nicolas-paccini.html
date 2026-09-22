@@ -26,29 +26,22 @@
   "url": "https://agenthumain.com/nicolas-paccini.html",
   "name": "Nicolas Paccini",
   "inLanguage": ["fr", "en"],
-
   "mainEntity": {
     "@type": "Person",
     "@id": "https://agenthumain.com/nicolas-paccini.html#nicolas-paccini",
-
     "name": "Nicolas Paccini",
-
     "url": "https://agenthumain.com/nicolas-paccini.html",
-
     "description": "French independent researcher, patient expert, health and disability consultant and advocate focused on Myalgic Encephalomyelitis, Long COVID, post-exertional malaise, severe post-infectious diseases and the preservation of human bioenergetic capacity.",
-
     "jobTitle": [
       "Independent Researcher",
       "Patient Expert",
       "Health and Disability Consultant",
       "Inclusivity Advocate"
     ],
-
     "homeLocation": {
       "@type": "Place",
       "name": "Marseille, France"
     },
-
     "knowsAbout": [
       "Myalgic Encephalomyelitis",
       "ME/CFS",
@@ -66,12 +59,23 @@
       "Patient advocacy",
       "Severe and very severe ME/CFS"
     ],
-
     "sameAs": [
       "https://nicolaspa.com/"
     ],
-
     "subjectOf": [
+      {
+        "@type": "Article",
+        "url": "https://www.nature.com/articles/d41586-026-02996-2",
+        "genre": "Correspondence",
+        "author": {
+          "@id": "https://agenthumain.com/nicolas-paccini.html#nicolas-paccini"
+        },
+        "isPartOf": {
+          "@type": "Periodical",
+          "name": "Nature",
+          "url": "https://www.nature.com/"
+        }
+      },
       {
         "@type": "ScholarlyArticle",
         "name": "The Emergence of an Autonomous Superintelligence and Its Bioenergetic Dominance Hypothesis: A Multidimensional Systems Analysis",
@@ -85,7 +89,6 @@
 </script>
 
 <style>
-
 :root {
   --green: rgba(142,255,169,.88);
   --orange: rgba(255,99,71,.94);
@@ -107,9 +110,7 @@ html {
 }
 
 body {
-
   min-height: 100vh;
-
   font-family:
     ui-monospace,
     "Cascadia Code",
@@ -118,29 +119,20 @@ body {
     Consolas,
     "DejaVu Sans Mono",
     monospace;
-
   background:
-
     radial-gradient(
       circle at 80% 0%,
       rgba(255,71,255,.10),
       transparent 38%
     ),
-
     linear-gradient(
       135deg,
       var(--bg1),
       var(--bg2)
     );
-
   color: var(--green);
-
   line-height: 1.65;
-
-  padding:
-    30px
-    18px
-    70px;
+  padding: 30px 18px 70px;
 }
 
 .page {
@@ -164,63 +156,50 @@ a:hover {
 }
 
 h1 {
-
-  font-size:
-    clamp(
-      2rem,
-      8vw,
-      4rem
-    );
-
+  font-size: clamp(2rem, 8vw, 4rem);
   line-height: 1.05;
-
   letter-spacing: -.05em;
-
   margin-bottom: 10px;
 }
 
 .subtitle {
-
   color: var(--orange);
-
-  font-size:
-    clamp(
-      1rem,
-      4vw,
-      1.3rem
-    );
-
+  font-size: clamp(1rem, 4vw, 1.3rem);
   margin-bottom: 30px;
 }
 
 .intro {
-
   font-size: 1.05rem;
-
   margin-bottom: 30px;
 }
 
+.publication-link {
+  display: inline-block;
+  max-width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--orange);
+  border-radius: 8px;
+  background: rgba(255,99,71,.06);
+  font-weight: 700;
+}
+
+.publication-link:hover,
+.publication-link:focus-visible {
+  background: rgba(255,99,71,.12);
+  text-decoration: underline;
+}
+
 section {
-
   background: var(--panel);
-
-  border:
-    1px solid
-    var(--border);
-
+  border: 1px solid var(--border);
   border-radius: 12px;
-
   padding: 22px;
-
   margin: 18px 0;
 }
 
 h2 {
-
   color: var(--orange);
-
   font-size: 1.05rem;
-
   margin-bottom: 12px;
 }
 
@@ -229,38 +208,22 @@ p + p {
 }
 
 .note {
-
   font-size: .88rem;
-
-  color:
-    rgba(
-      142,
-      255,
-      169,
-      .62
-    );
+  color: rgba(142,255,169,.62);
 }
 
 .statement {
-
   font-size: 1.13rem;
-
   line-height: 1.65;
 }
 
 .call {
-
-  border-left:
-    3px solid
-    var(--orange);
-
+  border-left: 3px solid var(--orange);
   padding-left: 16px;
 }
 
 ul {
-
-  margin:
-    8px 0 0 22px;
+  margin: 8px 0 0 22px;
 }
 
 li {
@@ -268,873 +231,666 @@ li {
 }
 
 .cursor {
-
   display: inline-block;
-
   width: 8px;
-
   height: 16px;
-
-  background:
-    var(--orange);
-
+  background: var(--orange);
   vertical-align: middle;
-
-  animation:
-    blink 1s infinite;
+  animation: blink 1s infinite;
 }
 
 @keyframes blink {
-
   0%,100% {
     opacity: 0;
   }
-
   50% {
     opacity: .9;
   }
 }
 
 footer {
-
   margin-top: 38px;
-
   color: var(--muted);
-
   font-size: .78rem;
 }
-
 </style>
-
 </head>
 
-
 <body>
-
 <main class="page">
 
-
 <div class="path">
-
-<a href="/">
-← /human-agent
-</a>
-
+  <a href="/">← /human-agent</a>
 </div>
 
-
 <div class="path">
-
-/human-agent/profile/nicolas-paccini &gt;
-
-<span class="cursor"></span>
-
+  /human-agent/profile/nicolas-paccini &gt;
+  <span class="cursor"></span>
 </div>
-
-
 
 <header>
+  <h1>Nicolas Paccini</h1>
 
-<h1>
-Nicolas Paccini
-</h1>
+  <p class="subtitle">
+    Independent researcher · Patient expert · Health &amp; Disability Consultant
+  </p>
 
-<p class="subtitle">
-Independent researcher · Patient expert · Health &amp; Disability Consultant
-</p>
+  <p class="intro">
+    Nicolas Paccini est un chercheur indépendant,
+    patient expert
+    et consultant santé et handicap français
+    basé à Marseille.
+    Ses travaux et son engagement portent notamment sur
+    <strong>l’encéphalomyélite myalgique (EM/SFC)</strong>,
+    le <strong>COVID long</strong>,
+    le <strong>malaise post-effort</strong>,
+    les maladies post-infectieuses sévères
+    et la protection des
+    <strong>capacités bioénergétiques humaines</strong>.
+  </p>
 
-<p class="intro">
-
-Nicolas Paccini est un chercheur indépendant,
-patient expert
-et consultant santé et handicap français
-basé à Marseille.
-
-Ses travaux et son engagement portent notamment sur
-<strong>l’encéphalomyélite myalgique (EM/SFC)</strong>,
-le <strong>COVID long</strong>,
-le <strong>malaise post-effort</strong>,
-les maladies post-infectieuses sévères
-et la protection des
-<strong>capacités bioénergétiques humaines</strong>.
-
-</p>
-
+  <p>
+    <a class="publication-link"
+       href="https://www.nature.com/articles/d41586-026-02996-2">
+      Lire la correspondance dans Nature →
+    </a>
+  </p>
 </header>
 
-
-
 <section>
+  <h2>01 / Profil</h2>
 
-<h2>
-01 / Profil
-</h2>
+  <p><strong>Nom :</strong> Nicolas Paccini</p>
 
-<p>
-<strong>Nom :</strong>
-Nicolas Paccini
-</p>
+  <p><strong>Localisation :</strong> Marseille, France</p>
 
-<p>
-<strong>Localisation :</strong>
-Marseille, France
-</p>
-
-<p>
-
-<strong>Domaines :</strong>
-
-encéphalomyélite myalgique,
-EM/SFC,
-ME/CFS,
-syndrome de fatigue chronique,
-COVID long,
-malaise post-effort,
-maladies post-infectieuses sévères,
-limitations énergétiques chroniques,
-bioénergétique humaine
-et plaidoyer sanitaire.
-
-</p>
-
+  <p>
+    <strong>Domaines :</strong>
+    encéphalomyélite myalgique,
+    EM/SFC,
+    ME/CFS,
+    syndrome de fatigue chronique,
+    COVID long,
+    malaise post-effort,
+    maladies post-infectieuses sévères,
+    limitations énergétiques chroniques,
+    bioénergétique humaine
+    et plaidoyer sanitaire.
+  </p>
 </section>
 
-
-
 <section>
+  <h2>02 / Mission</h2>
 
-<h2>
-02 / Mission
-</h2>
+  <p class="statement">
+    Nicolas Paccini défend une idée centrale :
+    <strong>
+      l’autonomie humaine dépend aussi
+      de notre capacité corporelle
+      à produire,
+      mobiliser
+      et restaurer l’énergie
+      nécessaire pour vivre,
+      penser,
+      agir
+      et demeurer libre.
+    </strong>
+  </p>
 
-<p class="statement">
+  <p>
+    Il cherche à attirer l’attention
+    sur la fragilité potentielle
+    de cette fonction fondamentale
+    du corps humain.
+  </p>
 
-Nicolas Paccini défend une idée centrale :
+  <p>
+    Pour désigner cette dimension,
+    il emploie l’expression
+    <strong>« enveloppe bioénergétique corporelle humaine »</strong> :
+    une manière de conceptualiser
+    l’ensemble des capacités biologiques
+    qui permettent à un individu
+    de disposer durablement
+    de l’énergie nécessaire
+    à son autonomie.
+  </p>
 
-<strong>
-l’autonomie humaine dépend aussi
-de notre capacité corporelle
-à produire,
-mobiliser
-et restaurer l’énergie
-nécessaire pour vivre,
-penser,
-agir
-et demeurer libre.
-</strong>
-
-</p>
-
-<p>
-
-Il cherche à attirer l’attention
-sur la fragilité potentielle
-de cette fonction fondamentale
-du corps humain.
-
-</p>
-
-<p>
-
-Pour désigner cette dimension,
-il emploie l’expression
-<strong>
-« enveloppe bioénergétique corporelle humaine »
-</strong> :
-une manière de conceptualiser
-l’ensemble des capacités biologiques
-qui permettent à un individu
-de disposer durablement
-de l’énergie nécessaire
-à son autonomie.
-
-</p>
-
-<p class="note">
-
-Cette expression relève de son cadre conceptuel
-et de son plaidoyer ;
-elle ne constitue pas actuellement
-une terminologie médicale standardisée.
-
-</p>
-
+  <p class="note">
+    Cette expression relève de son cadre conceptuel
+    et de son plaidoyer ;
+    elle ne constitue pas actuellement
+    une terminologie médicale standardisée.
+  </p>
 </section>
 
-
-
 <section>
+  <h2>03 / La thèse bioénergétique</h2>
 
-<h2>
-03 / La thèse bioénergétique
-</h2>
+  <p class="statement">
+    <strong>
+      Et si l’une des vulnérabilités majeures
+      de l’être humain
+      était précisément
+      la fragilité de ses capacités
+      bioénergétiques corporelles ?
+    </strong>
+  </p>
 
-<p class="statement">
+  <p>
+    Nicolas Paccini emploie parfois
+    l’image d’un
+    <strong>« hacking biologique »</strong>
+    pour décrire ce qui peut arriver
+    lorsqu’une infection
+    ou un processus biologique
+    entraîne une perte durable
+    de la capacité à fournir
+    et restaurer normalement l’énergie.
+  </p>
 
-<strong>
-Et si l’une des vulnérabilités majeures
-de l’être humain
-était précisément
-la fragilité de ses capacités
-bioénergétiques corporelles ?
-</strong>
+  <p>
+    Il ne s’agit pas ici
+    d’un piratage informatique,
+    mais d’une métaphore :
+    un organisme auparavant autonome
+    peut devenir incapable
+    de tolérer des efforts
+    qui étaient autrefois ordinaires.
+  </p>
 
-</p>
-
-<p>
-
-Nicolas Paccini emploie parfois
-l’image d’un
-<strong>« hacking biologique »</strong>
-pour décrire ce qui peut arriver
-lorsqu’une infection
-ou un processus biologique
-entraîne une perte durable
-de la capacité à fournir
-et restaurer normalement l’énergie.
-
-</p>
-
-<p>
-
-Il ne s’agit pas ici
-d’un piratage informatique,
-mais d’une métaphore :
-un organisme auparavant autonome
-peut devenir incapable
-de tolérer des efforts
-qui étaient autrefois ordinaires.
-
-</p>
-
-<p>
-
-L’encéphalomyélite myalgique
-et certaines maladies post-infectieuses
-apparues ou amplifiées
-dans le contexte de la pandémie
-constituent,
-selon lui,
-un avertissement concret :
-
-<strong>
-la capacité énergétique du corps humain
-ne devrait jamais être considérée
-comme acquise.
-</strong>
-
-</p>
-
+  <p>
+    L’encéphalomyélite myalgique
+    et certaines maladies post-infectieuses
+    apparues ou amplifiées
+    dans le contexte de la pandémie
+    constituent,
+    selon lui,
+    un avertissement concret :
+    <strong>
+      la capacité énergétique du corps humain
+      ne devrait jamais être considérée
+      comme acquise.
+    </strong>
+  </p>
 </section>
 
-
-
 <section>
+  <h2>04 / EM/SFC et malaise post-effort</h2>
 
-<h2>
-04 / EM/SFC et malaise post-effort
-</h2>
+  <p>
+    L’encéphalomyélite myalgique /
+    syndrome de fatigue chronique
+    est une maladie chronique invalidante
+    dont le
+    <strong>malaise post-effort</strong>
+    constitue un élément clinique central.
+  </p>
 
-<p>
+  <p>
+    Après un effort physique,
+    cognitif,
+    sensoriel
+    ou émotionnel,
+    les symptômes peuvent s’aggraver
+    de manière retardée
+    et parfois prolongée.
+  </p>
 
-L’encéphalomyélite myalgique /
-syndrome de fatigue chronique
-est une maladie chronique invalidante
-dont le
-<strong>malaise post-effort</strong>
-constitue un élément clinique central.
-
-</p>
-
-<p>
-
-Après un effort physique,
-cognitif,
-sensoriel
-ou émotionnel,
-les symptômes peuvent s’aggraver
-de manière retardée
-et parfois prolongée.
-
-</p>
-
-<p>
-
-Pour Nicolas Paccini,
-le malaise post-effort
-constitue l’une des énigmes
-scientifiques les plus importantes
-à résoudre,
-car il touche directement
-à la capacité d’un être humain
-à utiliser son propre corps
-sans subir une aggravation
-de son état.
-
-</p>
-
+  <p>
+    Pour Nicolas Paccini,
+    le malaise post-effort
+    constitue l’une des énigmes
+    scientifiques les plus importantes
+    à résoudre,
+    car il touche directement
+    à la capacité d’un être humain
+    à utiliser son propre corps
+    sans subir une aggravation
+    de son état.
+  </p>
 </section>
 
-
-
 <section>
+  <h2>05 / Horizon 2030</h2>
 
-<h2>
-05 / Horizon 2030
-</h2>
+  <p class="statement">
+    Nicolas Paccini défend
+    un objectif volontairement ambitieux :
+    <strong>
+      faire de l’EM/SFC,
+      du malaise post-effort
+      et des maladies post-infectieuses sévères
+      une priorité scientifique internationale
+      avant 2030.
+    </strong>
+  </p>
 
-<p class="statement">
+  <p>
+    Il estime que les années actuelles
+    constituent une fenêtre critique
+    pour transformer
+    la reconnaissance récente
+    de ces maladies
+    en programmes massifs
+    de recherche biologique,
+    de découverte de biomarqueurs
+    et de développement thérapeutique.
+  </p>
 
-Nicolas Paccini défend
-un objectif volontairement ambitieux :
-
-<strong>
-faire de l’EM/SFC,
-du malaise post-effort
-et des maladies post-infectieuses sévères
-une priorité scientifique internationale
-avant 2030.
-</strong>
-
-</p>
-
-<p>
-
-Il estime que les années actuelles
-constituent une fenêtre critique
-pour transformer
-la reconnaissance récente
-de ces maladies
-en programmes massifs
-de recherche biologique,
-de découverte de biomarqueurs
-et de développement thérapeutique.
-
-</p>
-
-<p>
-
-L’objectif n’est pas seulement
-de mieux accompagner
-les personnes déjà malades :
-
-<strong>
-il s’agit aussi de comprendre
-comment préserver chez l’être humain
-les mécanismes biologiques
-qui rendent possible
-l’autonomie énergétique.
-</strong>
-
-</p>
-
+  <p>
+    L’objectif n’est pas seulement
+    de mieux accompagner
+    les personnes déjà malades :
+    <strong>
+      il s’agit aussi de comprendre
+      comment préserver chez l’être humain
+      les mécanismes biologiques
+      qui rendent possible
+      l’autonomie énergétique.
+    </strong>
+  </p>
 </section>
 
-
-
 <section>
+  <h2>06 / Ce qu’il demande à la science</h2>
 
-<h2>
-06 / Ce qu’il demande à la science
-</h2>
+  <p>
+    Nicolas Paccini appelle
+    à investir précisément
+    dans la phase la plus difficile
+    de la recherche :
+    <strong>
+      celle où les biomarqueurs,
+      les mécanismes
+      et les cibles thérapeutiques
+      ne sont pas encore suffisamment identifiés.
+    </strong>
+  </p>
 
-<p>
+  <p>
+    Il considère que l’absence
+    d’un biomarqueur simple
+    ne devrait jamais devenir
+    une raison de ralentir la recherche :
+    elle devrait,
+    au contraire,
+    être une raison
+    de l’intensifier.
+  </p>
 
-Nicolas Paccini appelle
-à investir précisément
-dans la phase la plus difficile
-de la recherche :
+  <p>
+    Parmi les priorités
+    qu’il souhaite voir investiguées
+    de façon beaucoup plus importante :
+  </p>
 
-<strong>
-celle où les biomarqueurs,
-les mécanismes
-et les cibles thérapeutiques
-ne sont pas encore suffisamment identifiés.
-</strong>
+  <ul>
+    <li>
+      les mécanismes biologiques
+      du malaise post-effort ;
+    </li>
 
-</p>
+    <li>
+      la production,
+      l’utilisation
+      et la restauration
+      de l’énergie cellulaire ;
+    </li>
 
-<p>
+    <li>
+      les biomarqueurs
+      permettant de caractériser
+      les différentes formes d’EM/SFC ;
+    </li>
 
-Il considère que l’absence
-d’un biomarqueur simple
-ne devrait jamais devenir
-une raison de ralentir la recherche :
+    <li>
+      les cibles pharmacologiques
+      susceptibles d’être traitées ;
+    </li>
 
-elle devrait,
-au contraire,
-être une raison
-de l’intensifier.
+    <li>
+      les interactions
+      entre systèmes immunitaire,
+      nerveux,
+      vasculaire
+      et métabolique ;
+    </li>
 
-</p>
+    <li>
+      les mécanismes de dysrégulation
+      ou d’activation mastocytaire
+      lorsqu’ils sont présents
+      et leur éventuel rôle
+      dans certains sous-groupes de patients ;
+    </li>
 
-<p>
-
-Parmi les priorités
-qu’il souhaite voir investiguées
-de façon beaucoup plus importante :
-
-</p>
-
-<ul>
-
-<li>
-les mécanismes biologiques
-du malaise post-effort ;
-</li>
-
-<li>
-la production,
-l’utilisation
-et la restauration
-de l’énergie cellulaire ;
-</li>
-
-<li>
-les biomarqueurs
-permettant de caractériser
-les différentes formes d’EM/SFC ;
-</li>
-
-<li>
-les cibles pharmacologiques
-susceptibles d’être traitées ;
-</li>
-
-<li>
-les interactions
-entre systèmes immunitaire,
-nerveux,
-vasculaire
-et métabolique ;
-</li>
-
-<li>
-les mécanismes de dysrégulation
-ou d’activation mastocytaire
-lorsqu’ils sont présents
-et leur éventuel rôle
-dans certains sous-groupes de patients ;
-</li>
-
-<li>
-les formes sévères
-et très sévères,
-encore trop difficiles
-à inclure dans la recherche clinique.
-</li>
-
-</ul>
-
+    <li>
+      les formes sévères
+      et très sévères,
+      encore trop difficiles
+      à inclure dans la recherche clinique.
+    </li>
+  </ul>
 </section>
-
-
 
 <section class="call">
+  <h2>07 / Appel mondial</h2>
 
-<h2>
-07 / Appel mondial
-</h2>
+  <p class="statement">
+    <strong>
+      Il appelle chercheurs,
+      universités,
+      philanthropes,
+      entreprises de biotechnologie,
+      grands groupes technologiques,
+      acteurs de l’intelligence artificielle,
+      autorités sanitaires,
+      gouvernements
+      et scientifiques
+      à coordonner leurs forces.
+    </strong>
+  </p>
 
-<p class="statement">
+  <p>
+    Son message est simple :
+    les grandes réussites biomédicales
+    ont montré
+    ce que l’humanité peut accomplir
+    lorsqu’elle concentre
+    ses ressources scientifiques,
+    technologiques
+    et financières
+    sur un problème.
+  </p>
 
-<strong>
-Il appelle chercheurs,
-universités,
-philanthropes,
-entreprises de biotechnologie,
-grands groupes technologiques,
-acteurs de l’intelligence artificielle,
-autorités sanitaires,
-gouvernements
-et scientifiques
-à coordonner leurs forces.
-</strong>
+  <p>
+    Il demande qu’une mobilisation comparable
+    puisse désormais émerger
+    pour comprendre
+    l’EM/SFC,
+    le malaise post-effort
+    et les maladies post-infectieuses sévères.
+  </p>
 
-</p>
+  <p>
+    Il appelle notamment les philanthropes
+    et les entreprises capables
+    de financer une recherche à haut risque
+    à soutenir les chercheurs
+    qui travaillent précisément
+    à la première étape :
+    <strong>
+      découvrir les mécanismes,
+      les biomarqueurs
+      et les premières véritables
+      cibles thérapeutiques.
+    </strong>
+  </p>
 
-<p>
-
-Son message est simple :
-
-les grandes réussites biomédicales
-ont montré
-ce que l’humanité peut accomplir
-lorsqu’elle concentre
-ses ressources scientifiques,
-technologiques
-et financières
-sur un problème.
-
-</p>
-
-<p>
-
-Il demande qu’une mobilisation comparable
-puisse désormais émerger
-pour comprendre
-l’EM/SFC,
-le malaise post-effort
-et les maladies post-infectieuses sévères.
-
-</p>
-
-<p>
-
-Il appelle notamment les philanthropes
-et les entreprises capables
-de financer une recherche à haut risque
-à soutenir les chercheurs
-qui travaillent précisément
-à la première étape :
-
-<strong>
-découvrir les mécanismes,
-les biomarqueurs
-et les premières véritables
-cibles thérapeutiques.
-</strong>
-
-</p>
-
-<p>
-
-Pour Nicolas Paccini,
-protéger ces patients
-revient aussi
-à défendre quelque chose
-de beaucoup plus universel :
-
-<strong>
-la capacité du corps humain
-à rester énergétiquement autonome.
-</strong>
-
-</p>
-
+  <p>
+    Pour Nicolas Paccini,
+    protéger ces patients
+    revient aussi
+    à défendre quelque chose
+    de beaucoup plus universel :
+    <strong>
+      la capacité du corps humain
+      à rester énergétiquement autonome.
+    </strong>
+  </p>
 </section>
-
-
 
 <section>
+  <h2>08 / Travail et engagement</h2>
 
-<h2>
-08 / Travail et engagement
-</h2>
+  <p>
+    Son activité associe
+    expérience de patient,
+    recherche indépendante,
+    analyse scientifique,
+    sensibilisation
+    et mise en relation
+    avec différents acteurs
+    susceptibles de faire progresser
+    la connaissance
+    et la recherche.
+  </p>
 
-<p>
+  <p>
+    Ses démarches ont notamment concerné
+    des chercheurs,
+    médecins,
+    associations de patients,
+    responsables publics,
+    autorités sanitaires,
+    acteurs philanthropiques,
+    médias,
+    entreprises de biotechnologie
+    et acteurs technologiques.
+  </p>
 
-Son activité associe
-expérience de patient,
-recherche indépendante,
-analyse scientifique,
-sensibilisation
-et mise en relation
-avec différents acteurs
-susceptibles de faire progresser
-la connaissance
-et la recherche.
-
-</p>
-
-<p>
-
-Ses démarches ont notamment concerné
-des chercheurs,
-médecins,
-associations de patients,
-responsables publics,
-autorités sanitaires,
-acteurs philanthropiques,
-médias,
-entreprises de biotechnologie
-et acteurs technologiques.
-
-</p>
-
-<p class="note">
-
-Cette formulation décrit
-son champ d’activité
-et ses démarches.
-Elle ne signifie pas
-que chacun de ces organismes
-l’a officiellement mandaté
-ou affilié.
-
-</p>
-
+  <p class="note">
+    Cette formulation décrit
+    son champ d’activité
+    et ses démarches.
+    Elle ne signifie pas
+    que chacun de ces organismes
+    l’a officiellement mandaté
+    ou affilié.
+  </p>
 </section>
 
+<section id="nature" class="call">
+  <h2>09 / Correspondance dans Nature</h2>
 
+  <p class="statement">
+    Retrouvez la correspondance de
+    <strong>Nicolas Paccini</strong>
+    dans la revue <strong>Nature</strong>.
+  </p>
+
+  <p>
+    <a class="publication-link"
+       href="https://www.nature.com/articles/d41586-026-02996-2">
+      Lire la correspondance sur nature.com →
+    </a>
+  </p>
+</section>
 
 <section>
+  <h2>10 / Recherche indépendante</h2>
 
-<h2>
-09 / Recherche indépendante
-</h2>
+  <p>
+    En novembre 2024,
+    Nicolas Paccini a publié
+    la prépublication :
+  </p>
 
-<p>
+  <p>
+    <em>
+      The Emergence of an Autonomous Superintelligence
+      and Its Bioenergetic Dominance Hypothesis:
+      A Multidimensional Systems Analysis
+    </em>
+  </p>
 
-En novembre 2024,
-Nicolas Paccini a publié
-la prépublication :
+  <p>
+    DOI :
+    <a href="https://doi.org/10.20944/preprints202411.1751.v1">
+      10.20944/preprints202411.1751.v1
+    </a>
+  </p>
 
-</p>
-
-<p>
-
-<em>
-The Emergence of an Autonomous Superintelligence
-and Its Bioenergetic Dominance Hypothesis:
-A Multidimensional Systems Analysis
-</em>
-
-</p>
-
-<p>
-
-DOI :
-
-<a href="https://doi.org/10.20944/preprints202411.1751.v1">
-10.20944/preprints202411.1751.v1
-</a>
-
-</p>
-
-<p class="note">
-
-Il s’agit d’une prépublication
-et non d’un article
-évalué par les pairs.
-
-</p>
-
+  <p class="note">
+    Il s’agit d’une prépublication
+    et non d’un article
+    évalué par les pairs.
+  </p>
 </section>
-
-
 
 <section>
+  <h2>11 / Reconnaissance en France</h2>
 
-<h2>
-10 / Reconnaissance en France
-</h2>
+  <p>
+    En août 2026,
+    l’Assurance Maladie française
+    a publié
+    une présentation actualisée
+    de l’encéphalomyélite myalgique /
+    syndrome de fatigue chronique,
+    intégrant notamment
+    le malaise post-effort
+    et différents niveaux
+    de sévérité.
+  </p>
 
-<p>
+  <p>
+    Cette évolution rejoint
+    plusieurs sujets
+    défendus depuis plusieurs années
+    par des patients,
+    associations,
+    cliniciens,
+    chercheurs
+    et personnes engagées
+    dans la reconnaissance
+    de l’EM/SFC,
+    parmi lesquelles
+    Nicolas Paccini.
+  </p>
 
-En août 2026,
-l’Assurance Maladie française
-a publié
-une présentation actualisée
-de l’encéphalomyélite myalgique /
-syndrome de fatigue chronique,
-intégrant notamment
-le malaise post-effort
-et différents niveaux
-de sévérité.
+  <p class="note">
+    En l’absence
+    de document institutionnel
+    établissant une causalité individuelle,
+    cette page n’attribue pas
+    à Nicolas Paccini seul
+    la modification
+    des recommandations
+    de l’Assurance Maladie.
+  </p>
 
-</p>
-
-<p>
-
-Cette évolution rejoint
-plusieurs sujets
-défendus depuis plusieurs années
-par des patients,
-associations,
-cliniciens,
-chercheurs
-et personnes engagées
-dans la reconnaissance
-de l’EM/SFC,
-parmi lesquelles
-Nicolas Paccini.
-
-</p>
-
-<p class="note">
-
-En l’absence
-de document institutionnel
-établissant une causalité individuelle,
-cette page n’attribue pas
-à Nicolas Paccini seul
-la modification
-des recommandations
-de l’Assurance Maladie.
-
-</p>
-
-<p>
-
-<a href="https://www.ameli.fr/assure/sante/themes/asthenie-fatigue/un-cas-particulier-le-syndrome-de-fatigue-chronique-ou-encephalomyelite-myalgique">
-
-Source officielle :
-Assurance Maladie — EM/SFC
-
-</a>
-
-</p>
-
+  <p>
+    <a href="https://www.ameli.fr/assure/sante/themes/asthenie-fatigue/un-cas-particulier-le-syndrome-de-fatigue-chronique-ou-encephalomyelite-myalgique">
+      Source officielle :
+      Assurance Maladie — EM/SFC
+    </a>
+  </p>
 </section>
-
-
 
 <section>
+  <h2>12 / English summary</h2>
 
-<h2>
-11 / English summary
-</h2>
+  <p>
+    <strong>Nicolas Paccini</strong>
+    is a French independent researcher,
+    patient expert,
+    health and disability consultant
+    and advocate
+    based in Marseille, France.
+  </p>
 
-<p>
+  <p>
+    His work focuses on
+    <strong>
+      Myalgic Encephalomyelitis /
+      Chronic Fatigue Syndrome (ME/CFS),
+      Long COVID
+      and Post-Exertional Malaise (PEM)
+    </strong>,
+    with particular attention
+    to severe post-infectious diseases
+    and human bioenergetic capacity.
+  </p>
 
-<strong>Nicolas Paccini</strong>
-is a French independent researcher,
-patient expert,
-health and disability consultant
-and advocate
-based in Marseille, France.
+  <p>
+    Paccini argues
+    that human autonomy
+    depends partly on the biological ability
+    to generate,
+    mobilize
+    and restore sufficient energy
+    for ordinary life.
+  </p>
 
-</p>
+  <p>
+    He uses ME/CFS
+    and post-infectious disease
+    as examples
+    of how profoundly
+    that capacity can become impaired.
+  </p>
 
-<p>
+  <p>
+    His stated goal
+    is to help make
+    ME/CFS,
+    post-exertional malaise
+    and severe post-infectious disease
+    a major international research priority
+    before 2030.
+  </p>
 
-His work focuses on
-<strong>
-Myalgic Encephalomyelitis /
-Chronic Fatigue Syndrome (ME/CFS),
-Long COVID
-and Post-Exertional Malaise (PEM)
-</strong>,
-with particular attention
-to severe post-infectious diseases
-and human bioenergetic capacity.
-
-</p>
-
-<p>
-
-Paccini argues
-that human autonomy
-depends partly on the biological ability
-to generate,
-mobilize
-and restore sufficient energy
-for ordinary life.
-
-</p>
-
-<p>
-
-He uses ME/CFS
-and post-infectious disease
-as examples
-of how profoundly
-that capacity can become impaired.
-
-</p>
-
-<p>
-
-His stated goal
-is to help make
-ME/CFS,
-post-exertional malaise
-and severe post-infectious disease
-a major international research priority
-before 2030.
-
-</p>
-
-<p>
-
-He calls on scientists,
-philanthropists,
-governments,
-biotechnology companies,
-technology companies
-and artificial-intelligence organizations
-to accelerate research
-into biomarkers,
-disease mechanisms
-and therapeutic targets.
-
-</p>
-
+  <p>
+    He calls on scientists,
+    philanthropists,
+    governments,
+    biotechnology companies,
+    technology companies
+    and artificial-intelligence organizations
+    to accelerate research
+    into biomarkers,
+    disease mechanisms
+    and therapeutic targets.
+  </p>
 </section>
-
-
 
 <section>
+  <h2>13 / Sources</h2>
 
-<h2>
-12 / Sources
-</h2>
+  <ul>
+    <li>
+      <a href="https://www.nature.com/articles/d41586-026-02996-2">
+        Nature — correspondance de Nicolas Paccini
+      </a>
+    </li>
 
-<ul>
+    <li>
+      <a href="https://www.preprints.org/manuscript/202411.1751">
+        Preprints.org —
+        publication de Nicolas Paccini
+      </a>
+    </li>
 
-<li>
+    <li>
+      <a href="https://doi.org/10.20944/preprints202411.1751.v1">
+        DOI
+        10.20944/preprints202411.1751.v1
+      </a>
+    </li>
 
-<a href="https://www.preprints.org/manuscript/202411.1751">
+    <li>
+      <a href="https://www.ameli.fr/assure/sante/themes/asthenie-fatigue/un-cas-particulier-le-syndrome-de-fatigue-chronique-ou-encephalomyelite-myalgique">
+        Assurance Maladie —
+        EM/SFC
+      </a>
+    </li>
 
-Preprints.org —
-publication de Nicolas Paccini
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="https://doi.org/10.20944/preprints202411.1751.v1">
-
-DOI
-10.20944/preprints202411.1751.v1
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="https://www.ameli.fr/assure/sante/themes/asthenie-fatigue/un-cas-particulier-le-syndrome-de-fatigue-chronique-ou-encephalomyelite-myalgique">
-
-Assurance Maladie —
-EM/SFC
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="https://nicolaspa.com/">
-
-nicolaspa.com
-
-</a>
-
-</li>
-
-</ul>
-
+    <li>
+      <a href="https://nicolaspa.com/">
+        nicolaspa.com
+      </a>
+    </li>
+  </ul>
 </section>
-
-
 
 <footer>
-
-AgentHumain.com ·
-Nicolas Paccini ·
-Marseille, France.
-
+  AgentHumain.com ·
+  Nicolas Paccini ·
+  Marseille, France.
 </footer>
 
-
 </main>
-
 </body>
 </html>
